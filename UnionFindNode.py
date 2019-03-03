@@ -25,24 +25,24 @@ class UnionFindNode(object):
         return parent
 
     def find(self):
-        parent = self.root()
-        return parent.group_id_
+        root = self.root()
+        return root.group_id_
 
     def size(self):
-        parent = self.root()
-        return parent.size_
+        root = self.root()
+        return root.size_
 
     def unite(self, unite_node):
-        parent = self.root()
-        unite_parent = unite_node.root()
+        root = self.root()
+        unite_root = unite_node.root()
 
-        if parent.group_id_ != unite_parent.group_id_:
-            if parent.size() > unite_parent.size():
-                unite_parent.parent_ = parent
-                parent.size_ = parent.size_ + unite_parent.size_
+        if root.group_id_ != unite_root.group_id_:
+            if root.size() > unite_root.size():
+                unite_root.parent_ = root
+                root.size_ = root.size_ + unite_root.size_
             else:
-                parent.parent_ = unite_parent
-                unite_parent.size_ = parent.size_ + unite_parent.size_
+                root.parent_ = unite_root
+                unite_root.size_ = root.size_ + unite_root.size_
 
 
 if __name__ == "__main__":
