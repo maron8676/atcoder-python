@@ -17,7 +17,7 @@ class UnionFindNode(object):
     def is_root(self):
         return not self.parent_
 
-    def parent(self):
+    def root(self):
         parent = self
         while not parent.is_root():
             parent = parent.parent_
@@ -25,16 +25,16 @@ class UnionFindNode(object):
         return parent
 
     def find(self):
-        parent = self.parent()
+        parent = self.root()
         return parent.group_id_
 
     def size(self):
-        parent = self.parent()
+        parent = self.root()
         return parent.size_
 
     def unite(self, unite_node):
-        parent = self.parent()
-        unite_parent = unite_node.parent()
+        parent = self.root()
+        unite_parent = unite_node.root()
 
         if parent.group_id_ != unite_parent.group_id_:
             if parent.size() > unite_parent.size():
@@ -52,4 +52,4 @@ if __name__ == "__main__":
     node_list[0].unite(node_list[2])
     print("\n".join(list(map(str, node_list))))
     print()
-    print("\n".join(list(map(lambda x: str(x.parent()), node_list))))
+    print("\n".join(list(map(lambda x: str(x.root()), node_list))))
